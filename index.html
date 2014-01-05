@@ -1,0 +1,68 @@
+<script src="http://codeorigin.jquery.com/jquery-2.0.3.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
+<link href="./font-awesome-4.0.3/css/font-awesome.min.css" rel="stylesheet">
+
+<style>
+body
+{ 
+  width: 100%; 
+  margin: 0 auto; 
+  padding: 0; 
+
+  background-image: url("wood.jpg");
+  background-repeat: repeat;
+} 
+
+.icon
+{ 
+  position: absolute; 
+} 
+</style>
+
+<script>
+$(function(){
+  function genIcon(){
+    var W = $(window).width();
+    var H = $(window).height();
+
+    var names = [
+      'android',
+      'twitter',
+      'linux',
+      'github',
+      'apple',
+    ];
+    //pastel color
+    var colors = [
+      '#7fff7f',
+      '#7fffff',
+      '#ffff7f',
+      '#999',
+      '#ff7f7f',
+    ];
+    var r = _.random(0, names.length-1);
+    var className = names[r];
+    var color = colors[r];
+
+    var top = Math.floor(Math.random() * H);
+    var left= Math.floor(Math.random() * W);
+    var displayScale = W/1280;
+    var fontSize = displayScale*5 + Math.floor(Math.random() * displayScale*10);
+    var elem = '<i style="font-size: '+fontSize+'em; color:'+color+'; left:'+left+'; top:'+top+
+      '" class="icon fa fa-'+className+'"></i>';
+    $('body').append(elem);
+  }
+
+  function resetIcons(){
+    $('body').empty();
+    for(var i=0; i<10; i++){
+      genIcon()
+    }
+    setTimeout(resetIcons, 1000);
+  }
+  resetIcons();
+});
+</script>
+
+<body>
+</body>
